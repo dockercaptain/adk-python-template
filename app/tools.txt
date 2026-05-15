@@ -1,0 +1,6 @@
+def say_bye() -> str:
+    return "Good bye sir!"
+
+
+def get_current_time(city: str) -> str:
+    return f"Current time in {city} is 10:30 AM"

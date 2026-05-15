@@ -1,0 +1,28 @@
+import os
+import asyncio
+
+from google.adk.agents.llm_agent import Agent
+from google.adk.models.lite_llm import LiteLlm
+
+os.environ["OPENAI_BASE_URL"] = "http://192.168.1.200:11434/v1"
+os.environ["OPENAI_API_KEY"] = "ollama"
+
+def say_bye() -> str:
+    """Returns a goodbye message."""
+    return "Good bye sir!"
+
+def get_current_time(city: str) -> dict:
+    """Returns the current time in a specified city."""
+    return {"status": "success", "city": city, "time": "10:30 AM"}
+
+model="openai/gemma4:e2b"
+root_agent = Agent(
+    model=model,
+    name='root_agent',
+    description="Tells the current time in a specified city.",
+    instruction="You are a helpful assistant that tells the current time in cities. Use the 'get_current_time' tool for this purpose. if someone says bye then run 'say_bye'",
+    tools=[get_current_time,say_bye],
+)
+
+
+//adk web

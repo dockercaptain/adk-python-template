@@ -1,0 +1,20 @@
+from app.agent import root_agent
+from app.tracing import setup_tracing
+from google.adk.runners import Runner
+
+import time
+setup_tracing()
+
+def main():
+    print("Agent starting...\n")
+
+    runner = Runner(agent=root_agent)
+
+    result = runner.run("Tell me the time in London")
+    print(result)
+
+    time.sleep(2)
+
+
+if __name__ == "__main__":
+    main()
